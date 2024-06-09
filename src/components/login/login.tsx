@@ -1,5 +1,3 @@
-// src/components/Login.js
-
 import { account } from "@/appwrite/appwrite";
 import { loginValidationSchema } from "@/types/user.types";
 import { useFormik } from "formik";
