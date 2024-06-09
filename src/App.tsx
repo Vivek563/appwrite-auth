@@ -1,5 +1,5 @@
 // src/App.tsx
-import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Dashboard from "./components/dashboard/dashboard";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
@@ -19,7 +19,6 @@ function App() {
                               </ProtectedRoute>
                          }
                     />
-                    <Route path="/" element={<Navigate to="/dashboard" />} />
                </Routes>
           </Router>
      );
