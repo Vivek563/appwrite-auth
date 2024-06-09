@@ -23,7 +23,7 @@ function Login() {
 
                toast.promise(loginPromise, {
                     loading: "Logging in...",
-                    error: "Login failed",
+                    error: "Please check the Email and Password",
                     success: "Login successful",
                });
 
