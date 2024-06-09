@@ -4,6 +4,7 @@ import { account } from "@/appwrite/appwrite";
 import { loginValidationSchema } from "@/types/user.types";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -18,10 +19,17 @@ function Login() {
           },
           validationSchema: loginValidationSchema,
           onSubmit: async (values) => {
+               const loginPromise = account.createEmailPasswordSession(values.email, values.password);
+
+               toast.promise(loginPromise, {
+                    loading: "Logging in...",
+                    error: "Login failed",
+                    success: "Login successful",
+               });
+
                try {
-                    const session = await account.createSession(values.email, values.password);
-                    console.log("User logged in:", session);
-                    navigate("/dashboard"); // Redirect to a dashboard or homepage after login
+                    await loginPromise;
+                    navigate("/dashboard");
                } catch (error) {
                     console.error("Error logging in:", error);
                }

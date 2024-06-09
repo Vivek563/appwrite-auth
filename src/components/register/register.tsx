@@ -2,6 +2,7 @@ import { account } from "@/appwrite/appwrite";
 import { registerValidationSchema } from "@/types/user.types";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -19,16 +20,22 @@ function Register() {
           },
           validationSchema: registerValidationSchema,
           onSubmit: async (values) => {
+               const registerUserPromise = account.create("unique()", values.email, values.password, `${values.first_name} ${values.last_name}`);
+
+               toast.promise(registerUserPromise, {
+                    loading: "Registering user...",
+                    error: "Registration failed",
+                    success: "Registration successful. Please login to continue",
+               });
+
                try {
-                    const user = await account.create("unique()", values.email, values.password, `${values.first_name} ${values.last_name}`);
-                    console.log("User registered:", user);
+                    await registerUserPromise;
                     navigate("/login");
                } catch (error) {
                     console.error("Error registering user:", error);
                }
           },
      });
-
      return (
           <div className="min-h-screen flex items-center flex-col justify-center">
                <form className="gap-1 w-[50%] border-[1px] border-black p-10" onSubmit={formik.handleSubmit}>
