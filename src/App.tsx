@@ -1,4 +1,3 @@
-// src/App.tsx
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Dashboard from "./components/dashboard/dashboard";
 import Login from "./components/login/login";
