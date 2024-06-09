@@ -43,10 +43,16 @@ const Dashboard: React.FC = () => {
      }
 
      return (
-          <div className="min-h-screen items-center flex justify-center w-full flex-col">
-               <h1>Welcome, {user.name}</h1>
-               <p>Email: {user.email}</p>
-               <Button onClick={handleLogout}>Logout</Button>
+          <div className="min-h-screen items-center flex justify-center w-full flex-col ">
+               <div className="border-[2px] border-black p-10 flex items-center justify-center flex-col gap-3">
+                    <h1>
+                         Welcome, <span className="uppercase">{user.name}</span>{" "}
+                    </h1>
+                    <p>Email: {user.email}</p>
+                    <Button variant={"destructive"} onClick={handleLogout}>
+                         Logout
+                    </Button>
+               </div>
           </div>
      );
 };
