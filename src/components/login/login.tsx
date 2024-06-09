@@ -27,7 +27,7 @@ function Login() {
 
                try {
                     await loginPromise;
-                    navigate("/dashboard");
+                    navigate("/");
                } catch (error) {
                     console.error("Error logging in:", error);
                }
