@@ -2,7 +2,7 @@ import { account } from "@/appwrite/appwrite";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
-
+import HomePage from "./home";
 interface User {
      email: string;
      name: string;
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
      }
 
      return (
-          <div className="min-h-screen items-center flex justify-center w-full flex-col ">
+          <div className="min-h-screen  w-full flex-col ">
                <div className="border-[2px] border-black p-10 flex items-center justify-center flex-col gap-3">
                     <h1>
                          Welcome, <span className="uppercase">{user.name}</span>{" "}
@@ -53,6 +53,7 @@ const Dashboard: React.FC = () => {
                          Logout
                     </Button>
                </div>
+               <HomePage />
           </div>
      );
 };
